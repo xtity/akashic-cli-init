@@ -1,0 +1,10 @@
+{
+  "globalDependencies": {
+    "commander": "registry:dt/commander#2.3.0+20160317120654",
+    "form-data": "registry:dt/form-data#0.0.0+20160724024111",
+    "fs-extra": "registry:dt/fs-extra#0.0.0+20160319124112",
+    "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#58aa81d0f90b118c7dc9e6ab685e4c7aa75f1c72",
+    "request": "registry:dt/request#0.0.0+20160726020908",
+    "unzip": "file:./typings/unzip.d.ts"
+  }
+}
