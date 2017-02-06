@@ -2,14 +2,15 @@ import * as fs from "fs-extra";
 import * as path from "path";
 import {InitParameterObject} from "./InitParameterObject";
 
-interface CopyListItem {
+export interface CopyListItem {
 	src: string;
 	dst?: string;
 }
 
-interface TemplateConfig {
+export interface TemplateConfig {
 	files?: CopyListItem[];
 	gameJson?: string;
+	guideMessage?: string;
 }
 
 /**

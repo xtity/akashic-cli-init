@@ -2,6 +2,7 @@ import {InitParameterObject, completeInitParameterObject} from "./InitParameterO
 import {updateConfigurationFile} from "./BasicParameters";
 import * as downloadTemplate from "./downloadTemplate";
 import * as copyTemplate from "./copyTemplate";
+import { showTemplateMessage } from "./showTemplateMessage";
 
 export function promiseInit(param: InitParameterObject): Promise<void> {
 	return Promise.resolve<void>(undefined)
@@ -9,6 +10,7 @@ export function promiseInit(param: InitParameterObject): Promise<void> {
 		.then(() => downloadTemplate.downloadTemplateIfNeeded(param))
 		.then(() => copyTemplate.copyTemplate(param))
 		.then(confPath => updateConfigurationFile(confPath, param.logger))
+		.then(() => showTemplateMessage(param))
 		.then(() => param.logger.info("Done!"));
 }
 
