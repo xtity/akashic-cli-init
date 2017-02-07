@@ -15,9 +15,9 @@ function showTemplateGuideMessage(templateConfig: TemplateConfig, param: InitPar
 	return showMessage(guideMessage, param.logger);
 }
 
-function showMessage(messages: string, logger: commons.Logger): Promise<void> {
+function showMessage(message: string, logger: commons.Logger): Promise<void> {
 	return new Promise<void>((resolve, reject) => {
-		const texts = messages.split("\n");
+		const texts = message.split("\n");
 		texts.forEach((text: string) => {
 			logger.print(text);
 		});
