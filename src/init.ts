@@ -13,7 +13,7 @@ export function promiseInit(param: InitParameterObject): Promise<void> {
 		.then(() => completeInitParameterObject(param))
 		.then(() => downloadTemplate.downloadTemplateIfNeeded(param))
 		.then(() => readTemplateFile(param))
-		.then((temp) => { templateConfig = temp; })
+		.then((template) => { templateConfig = template; })
 		.then(() => copyTemplate.copyTemplate(templateConfig, param))
 		.then(confPath => updateConfigurationFile(confPath, param.logger))
 		.then(() => showTemplateMessage(templateConfig, param))
