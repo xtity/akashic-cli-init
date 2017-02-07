@@ -1,8 +1,8 @@
 import * as request from "request";
 import * as unzip from "unzip";
-import * as fs from "fs-extra";
+import * as fs from "fs";
 import * as path from "path";
-import {InitParameterObject} from "./InitParameterObject";
+import { InitParameterObject } from "./InitParameterObject";
 
 interface TemplateList {
 	templates: {[type: string]: string};

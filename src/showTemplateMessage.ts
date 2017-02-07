@@ -1,27 +1,12 @@
-import * as fs from "fs-extra";
-import * as path from "path";
-import {InitParameterObject} from "./InitParameterObject";
-import { TemplateConfig } from "./copyTemplate";
+import { InitParameterObject } from "./InitParameterObject";
+import { TemplateConfig } from "./TemplateConfig";
 import * as commons from "@akashic/akashic-cli-commons";
 
 /**
  * template.json の guideMessage 要素を出力する
  */
-export function showTemplateMessage(param: InitParameterObject): Promise<void> {
-	const copySpecPath = path.join(param.localTemplateDirectory, param.type, "template.json");
-	return new Promise<void>((resolve, reject) => {
-		fs.readJson(copySpecPath, (err: any, templateConfig: TemplateConfig) => {
-			if (err) {
-				if (err.code !== "ENOENT") {
-					reject(err);
-					return;
-				}
-				templateConfig = {};
-			}
-			showTemplateGuideMessage(templateConfig, param)
-				.then(resolve, reject);
-		});
-	});
+export function showTemplateMessage(templateConfig: TemplateConfig, param: InitParameterObject): Promise<void> {
+	return showTemplateGuideMessage(templateConfig, param);
 }
 
 function showTemplateGuideMessage(templateConfig: TemplateConfig, param: InitParameterObject): Promise<void> {
