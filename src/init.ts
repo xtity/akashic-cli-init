@@ -1,14 +1,22 @@
-import {InitParameterObject, completeInitParameterObject} from "./InitParameterObject";
-import {updateConfigurationFile} from "./BasicParameters";
+import { InitParameterObject, completeInitParameterObject } from "./InitParameterObject";
+import { updateConfigurationFile } from "./BasicParameters";
 import * as downloadTemplate from "./downloadTemplate";
 import * as copyTemplate from "./copyTemplate";
+import { showTemplateMessage } from "./showTemplateMessage";
+import { TemplateConfig } from "./TemplateConfig";
+import { readTemplateFile } from "./readTemplateFile";
 
 export function promiseInit(param: InitParameterObject): Promise<void> {
+	let templateConfig: TemplateConfig;
+
 	return Promise.resolve<void>(undefined)
 		.then(() => completeInitParameterObject(param))
 		.then(() => downloadTemplate.downloadTemplateIfNeeded(param))
-		.then(() => copyTemplate.copyTemplate(param))
+		.then(() => readTemplateFile(param))
+		.then((template) => { templateConfig = template; })
+		.then(() => copyTemplate.copyTemplate(templateConfig, param))
 		.then(confPath => updateConfigurationFile(confPath, param.logger))
+		.then(() => showTemplateMessage(templateConfig, param))
 		.then(() => param.logger.info("Done!"));
 }
 

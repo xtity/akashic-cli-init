@@ -1,6 +1,6 @@
 var dt = require("../lib/downloadTemplate");
 var commons = require("@akashic/akashic-cli-commons");
-var fs = require("fs-extra");
+var fs = require("fs");
 var os = require("os");
 var path = require("path");
 var MockConfigFile = require("./support/mockConfigFile");

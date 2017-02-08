@@ -25,7 +25,12 @@ describe("copyTemplate.ts", () => {
 							gameJson: "a"
 						}),
 						a: "aaa",
-						b: "bbb"
+						b: "bbb",
+						"y": {
+							"z": {
+								"e": ""
+							}
+						}
 					}
 				}
 			});
@@ -42,7 +47,7 @@ describe("copyTemplate.ts", () => {
 				type: "simple",
 				cwd: "home"
 			};
-			ct.copyTemplate(param)
+			ct.copyTemplate({}, param)
 				.then(() => {
 					expect(fs.statSync(path.join("home", "a")).isFile()).toBe(true);
 					expect(fs.statSync(path.join("home", "b")).isFile()).toBe(true);
@@ -59,7 +64,7 @@ describe("copyTemplate.ts", () => {
 				type: "manual",
 				cwd: "home"
 			};
-			ct.copyTemplate(param)
+			ct.copyTemplate({}, param)
 				.then(() => {
 					expect(fs.statSync(path.join("home", "a")).isFile()).toBe(true);
 					expect(fs.statSync(path.join("home", "y", "z", "e")).isFile()).toBe(true);

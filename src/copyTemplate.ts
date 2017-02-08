@@ -1,36 +1,14 @@
 import * as fs from "fs-extra";
 import * as path from "path";
-import {InitParameterObject} from "./InitParameterObject";
-
-interface CopyListItem {
-	src: string;
-	dst?: string;
-}
-
-interface TemplateConfig {
-	files?: CopyListItem[];
-	gameJson?: string;
-}
+import { InitParameterObject } from "./InitParameterObject";
+import { TemplateConfig, CopyListItem } from "./TemplateConfig";
 
 /**
  * ローカルテンプレートをカレントディレクトリにコピーする
  */
-export function copyTemplate(param: InitParameterObject): Promise<string> {
-	const copySpecPath = path.join(param.localTemplateDirectory, param.type, "template.json");
-	return new Promise<string>((resolve, reject) => {
-		fs.readJson(copySpecPath, (err: any, templateConfig: TemplateConfig) => {
-			if (err) {
-				if (err.code !== "ENOENT") {
-					reject(err);
-					return;
-				}
-				templateConfig = {};
-			}
-			runTemplateConfig(templateConfig, param)
-				.then(() => getGameJsonPath(templateConfig, param))
-				.then(resolve, reject);
-		});
-	});
+export function copyTemplate(templateConfig: TemplateConfig, param: InitParameterObject): Promise<string> {
+	return runTemplateConfig(templateConfig, param)
+		.then(() => getGameJsonPath(templateConfig, param));
 }
 
 /**
