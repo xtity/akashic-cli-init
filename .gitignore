@@ -13,3 +13,4 @@ lib
 tmp
 .idea
 spec/build
+.vscode
