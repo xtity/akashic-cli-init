@@ -1,10 +1,10 @@
 {
   "name": "@akashic/akashic-cli-init",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "A module to get your Akashic game started.",
   "main": "lib/index.js",
   "scripts": {
-    "prepublish": "gulp clean && npm run install:typings && gulp compile",
+    "prepublish": "gulp clean && npm run install:typings && gulp compile && gulp prepublish",
     "install:typings": "gulp install:typings",
     "clean:typings": "gulp clean:typings",
     "clean": "gulp clean",
@@ -32,6 +32,7 @@
     "gulp-jasmine": "~2.3.0",
     "gulp-shell": "~0.5.2",
     "gulp-tslint": "~4.3.5",
+    "gulp-zip": "^4.0.0",
     "http-server": "^0.9.0",
     "jasmine": "~2.1.1",
     "jasmine-reporters": "~2.0.4",
