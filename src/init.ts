@@ -23,3 +23,4 @@ export function promiseInit(param: InitParameterObject): Promise<void> {
 export function init(param: InitParameterObject, cb: (err?: any) => void): void {
 	promiseInit(param).then<void>(cb, cb);
 }
+
