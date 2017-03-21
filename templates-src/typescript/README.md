@@ -6,7 +6,6 @@
 
 ビルドにはNode.jsが必要です。
 
-
 初回のみ、以下のコマンドを実行して、ビルドに必要なパッケージをインストールしてください。
 この作業は `typescript-game-sample` を新しく生成するごとに必要です。
 
@@ -45,6 +44,6 @@ npm test
 
 * `npm start`
 
-# TypeScriptライブラリ利用時の注意
+## TypeScriptライブラリ利用時の注意
 
 ゲームにTypeScriptライブラリを利用する場合、このディレクトリで `npm install --save package_name` を実行した後、game/以下で `akashic-cli install package_name` する必要があります。

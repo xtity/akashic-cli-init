@@ -21,14 +21,15 @@ gulp.task("clean:typings", function (cb) { del(["typings", "spec/typings"], cb);
 gulp.task("compile", shell.task("tsc"));
 gulp.task("compile:spec", ["compile"], shell.task("tsc", {cwd: path.join(__dirname, "spec")}));
 
-gulp.task("prepublish", function() {
+gulp.task("zip", function() {
 	var templates = template_list.templates;
 	Object.keys(templates).forEach(function (key) {
-		console.log("key: " + key + ", val: " + templates[key]);
-
-		gulp.src("templates-src/" + key + "/*", {base: "templates-src/" + key})
-			.pipe(zip(key + ".zip"))
-			.pipe(gulp.dest("templates"));
+		gulp.src("templates-src/" + key + "/**/*", {
+			base: "templates-src/" + key,
+			dot: true
+		})
+		.pipe(zip(key + ".zip"))
+		.pipe(gulp.dest("templates"));
 	});
 });
 

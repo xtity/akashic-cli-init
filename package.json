@@ -4,12 +4,12 @@
   "description": "A module to get your Akashic game started.",
   "main": "lib/index.js",
   "scripts": {
-    "prepublish": "gulp clean && npm run install:typings && gulp compile && gulp prepublish",
+    "prepublish": "gulp clean && npm run install:typings && gulp compile && gulp zip",
     "install:typings": "gulp install:typings",
     "clean:typings": "gulp clean:typings",
     "clean": "gulp clean",
     "start": "npm run build && node bin/run",
-    "build": "gulp compile",
+    "build": "gulp compile && gulp zip",
     "lint": "gulp lint lint-md",
     "test": "gulp safeTest lint lint-md"
   },
