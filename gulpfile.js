@@ -5,9 +5,11 @@ var tslint = require("gulp-tslint");
 var jasmine = require("gulp-jasmine");
 var istanbul = require("gulp-istanbul");
 var shell = require("gulp-shell");
+var zip = require('gulp-zip');
 var reporters = require("jasmine-reporters");
 var Reporter = require("jasmine-terminal-reporter");
 var child_process = require("child_process");
+var template_list = require("./templates/template-list.json");
 
 gulp.task("install:typings", shell.task(["gulp install:typings:src", "gulp install:typings:spec"]));
 gulp.task("install:typings:src", shell.task("typings install"));
@@ -18,6 +20,18 @@ gulp.task("clean:typings", function (cb) { del(["typings", "spec/typings"], cb);
 
 gulp.task("compile", shell.task("tsc"));
 gulp.task("compile:spec", ["compile"], shell.task("tsc", {cwd: path.join(__dirname, "spec")}));
+
+gulp.task("zip", function() {
+	var templates = template_list.templates;
+	Object.keys(templates).forEach(function (key) {
+		gulp.src("templates-src/" + key + "/**/*", {
+			base: "templates-src/" + key,
+			dot: true
+		})
+		.pipe(zip(key + ".zip"))
+		.pipe(gulp.dest("templates"));
+	});
+});
 
 gulp.task("lint", function(){
 	return gulp.src("src/**/*.ts")

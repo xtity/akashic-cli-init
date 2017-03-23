@@ -30,7 +30,7 @@ describe("downloadTemplate.ts", () => {
 	describe("downloadTemplate()", () => {
 		it("download javascript templates", done => {
 			var str = "";
-			var tmpDir = path.join(os.tmpDir(), ".akashic-template");
+			var tmpDir = path.join(os.tmpdir(), ".akashic-template");
 			var param = {
 				logger: new commons.ConsoleLogger({quiet: true}),
 				localTemplateDirectory: tmpDir,
@@ -57,7 +57,7 @@ describe("downloadTemplate.ts", () => {
 
 		it("extract factory template", done => {
 			var str = "";
-			var tmpDir = path.join(os.tmpDir(), ".akashic-template");
+			var tmpDir = path.join(os.tmpdir(), ".akashic-template");
 			var param = {
 				logger: new commons.ConsoleLogger({quiet: true}),
 				configFile: new MockConfigFile({}),

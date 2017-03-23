@@ -13,3 +13,5 @@ lib
 tmp
 .idea
 spec/build
+.vscode
+templates/*.zip
